@@ -26,5 +26,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         name: Upload Artifact
         with:
-          name: DenoriaBot.jar
+          name: SkytopAutomizer.jar
           path: build/libs/*
