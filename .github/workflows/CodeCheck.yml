@@ -16,11 +16,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: java
           
       - name: Build with Maven
         run: ./gradlew build
