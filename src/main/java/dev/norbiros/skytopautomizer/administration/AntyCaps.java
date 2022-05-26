@@ -1,4 +1,4 @@
-package dev.norbiros.skytopautomizer.functions;
+package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 
 
@@ -19,7 +19,7 @@ import java.util.Map;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
 @Mod.EventBusSubscriber(modid = SkytopAutomizer.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
-public class FastMath {
+public class AntyCaps {
   
   public static Map<String, Integer> warnings = new HashMap<String, Integer>();
   

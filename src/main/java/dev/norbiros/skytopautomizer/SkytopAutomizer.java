@@ -24,7 +24,7 @@ public class SkytopAutomizer
 {
     public static final String MOD_ID = "skytopautomizer";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public SkytopAutomizer() {
         // Register the setup method for modloading
@@ -36,7 +36,6 @@ public class SkytopAutomizer
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        LOGGER.info("SkyTopAutomizer mod is loading...");
     }
 }
