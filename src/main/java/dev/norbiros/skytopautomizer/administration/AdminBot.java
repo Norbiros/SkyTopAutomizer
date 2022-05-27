@@ -20,9 +20,27 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 
 public class AdminBot {
     
-  public static void handleMessage(String nickName, String chatMessage) {
+  public static int handleMessage(String nickName, String chatMessage) {
       if (chatMessage.contains("/info")) {
-        Minecraft.getInstance().player.chat("/msg " + nickName + " AdminBot v.1!");
+        sendMessage("/msg " + nickName + "[AB] AdminBot v.1!");
+        sendMessage("/msg " + nickName + "[AB] Witaj w menu bota stworzonego przez @Norbiros");
+        sendMessage("/msg " + nickName + "[AB] Obecne komendy:");
+        sendMessage("/msg " + nickName + "[AB] /helper");
+        sendMessage("/msg " + nickName + "[AB] /info");
+        return 1;
+      } else (chatMessage.contains("/helper")) {
+        sendMessage("[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
+        sendMessage("[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
+        sendMessage("[AB] że mod ciągle spamował...");
+        sendMessage("[AB] Z tego powodu @Norbiros został wyrzucony z Administracji...");
+        sendMessage("[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
+        sendMessage("[AB] Jeśli chcesz mu pomóc, daj mu podpis");
+        sendMessage("[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
       }
+      return 0;
+  }
+
+  public static void sendMessage(String message) {
+    Minecraft.getInstance().player.chat(message);
   }
 } 

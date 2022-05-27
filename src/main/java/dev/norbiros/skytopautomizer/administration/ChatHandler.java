@@ -27,15 +27,20 @@ public class ChatHandler {
 
     final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?( )?(.*?):[ ]?(.*)");
     final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
-    final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> Ja: (.*)");
+    final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> (.*?): (.*)");
     Matcher matcher = pattern.matcher( event.getMessage().getString() );
     Matcher privateMessageMatcher = privateMessagePattern.matcher( event.getMessage().getString() );
     
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
 
     if (privateMessageMatcher.find()) {
-      AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(2));
-      event.setCanceled(true);
+      if (privateMessageMatcher.group(2) == "Ja") {
+        if (AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
+          event.setCanceled(true);
+        }
+      } else if (privateMessageMatcher.group(3).contains("[AB]")) {
+        event.setCanceled(true);
+      }
     } else if (matcher.find()) { 
       String userName = matcher.group(4);
       String chatMessage = matcher.group(5);
