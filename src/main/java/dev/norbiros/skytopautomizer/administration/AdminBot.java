@@ -29,13 +29,13 @@ public class AdminBot {
         sendMessage("/msg " + nickName + "[AB] /info");
         return 1;
       } else (chatMessage.contains("/helper")) {
-        sendMessage("[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
-        sendMessage("[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
-        sendMessage("[AB] że mod ciągle spamował...");
-        sendMessage("[AB] Z tego powodu @Norbiros został wyrzucony z Administracji...");
-        sendMessage("[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
-        sendMessage("[AB] Jeśli chcesz mu pomóc, daj mu podpis");
-        sendMessage("[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
+        sendMessage("/msg " + nickName + "[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
+        sendMessage("/msg " + nickName + "[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
+        sendMessage("/msg " + nickName + "[AB] że mod ciągle spamował...");
+        sendMessage("/msg " + nickName + "[AB] Z tego powodu @Norbiros został wyrzucony z Administracji...");
+        sendMessage("/msg " + nickName + "[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
+        sendMessage("/msg " + nickName + "[AB] Jeśli chcesz mu pomóc, daj mu podpis");
+        sendMessage("/msg " + nickName + "[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
       }
       return 0;
   }
