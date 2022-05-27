@@ -18,50 +18,12 @@ import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
-@Mod.EventBusSubscriber(modid = SkytopAutomizer.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class AntyCaps {
   
   public static Map<String, Integer> warnings = new HashMap<String, Integer>();
   
-  @SubscribeEvent
-  public static void onClientChat(ClientChatReceivedEvent event) {
-
-    final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?( )?(.*?):[ ]?(.*)");
-    final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
-    Matcher matcher = pattern.matcher( event.getMessage().getString() );
-    
-    boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
-
-    int fastCapsLetterAmount = 0;
-	  for (int i = 0; i < event.getMessage().getString().length(); i++) {
-      char letter = event.getMessage().getString().charAt(i);
-      if (letter >= 65 && letter <= 90) {
-        fastCapsLetterAmount = fastCapsLetterAmount + 1;
-      }
-    }
-    
-    if (matcher.find() && userIsOnServer && fastCapsLetterAmount >= 4) {      
-      String player = matcher.group(4);
-      String nickname;
-      String chatMessage = matcher.group(5);
-      Matcher nickMatcher;
-
-      // Replace all nicknames with "<nick>"
-      for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
-        nickMatcher = nickPattern.matcher( s.getTabListDisplayName().getString() );
-        if (nickMatcher.find()) {
-          nickname = nickMatcher.group(4);
-          nickname.replace(" ", "");
-          chatMessage = chatMessage.replaceAll("(?i)" + nickname, "<nick>");
-        }
-      }
-
-      // Test chat message
-      if (chatMessage.contains("lol")) {
-        System.out.println("[SKYTOPAUTOMIZER] Test auto reply!");
-        Minecraft.getInstance().player.chat("/a " + player + " kocha torwika <3!");
-      }
-
+  public static void handleMessage(String nickName, String chatMessage) {
+      
       // Calculate caps letter amount
       int chatMessageLength = chatMessage.replace(" ", "").length();
 	    int capsLetterAmount = 0;
@@ -76,7 +38,7 @@ public class AntyCaps {
 
       if (capsMessage) {
         if (!warnings.containsKey(player)) {
-          System.out.println("I'm adding warning for " + player);
+          System.out.println("[SKYTOPAUTOMIZER] I'm adding warning for " + player);
           warnings.put(player, 1);
         }
         
