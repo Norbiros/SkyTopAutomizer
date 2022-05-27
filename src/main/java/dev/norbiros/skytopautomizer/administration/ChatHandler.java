@@ -1,7 +1,7 @@
 package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 import dev.norbiros.skytopautomizer.administration.AntyCaps;
-import dev.norbiros.skytopautomizer.administration.AdminBot;
+import dev.norbiros.skytopautomizer.administration.PrivateAdminBot;
 import dev.norbiros.skytopautomizer.administration.ChatComplete;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -37,7 +37,7 @@ public class ChatHandler {
     if (privateMessageMatcher.find()) {
       if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
         System.out.println("[SKYTOPAUTOMIZER] Trying to handle Admin bot message!" );
-        if (AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
+        if (PrivateAdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
           event.setCanceled(true);
         }
       } else if (privateMessageMatcher.group(3).contains("[AB]")) {
@@ -45,6 +45,7 @@ public class ChatHandler {
         event.setCanceled(true);
       }
     } else if (matcher.find()) { 
+      String rank = matcher.group(2);
       String userName = matcher.group(4);
       String chatMessage = matcher.group(5);
       String loopNick;
@@ -66,8 +67,12 @@ public class ChatHandler {
         Minecraft.getInstance().player.chat("/a " + userName + " kocha torwika <3!");
       }
 
+      AntyCaps.handleMessage(userName, chatMessage);
+      
       if (chatMessage.startsWith(".")) {
-        ChatComplete.handleMessage(userName, chatMessage.replace(".", ""));
+        if (rank == "HELPER" || rank == "MOD" || rank == "WŁAŚCICIEL" || rank == "W?A?CICIEL" || rank == "ADMIN" || userName = "Norbiros") {
+          ChatComplete.handleMessage(chatMessage.replace(".", ""));
+        }
       }
     }
   }
