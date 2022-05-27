@@ -28,7 +28,7 @@ public class AdminBot {
         sendMessage("/msg " + nickName + "[AB] /helper");
         sendMessage("/msg " + nickName + "[AB] /info");
         return 1;
-      } else (chatMessage.contains("/helper")) {
+      } else if (chatMessage.contains("/helper")) {
         sendMessage("/msg " + nickName + "[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
         sendMessage("/msg " + nickName + "[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
         sendMessage("/msg " + nickName + "[AB] że mod ciągle spamował...");
