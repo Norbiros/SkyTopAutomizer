@@ -21,14 +21,16 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 public class AdminBot {
     
   public static int handleMessage(String nickName, String chatMessage) {
+      System.out.println("[SKYTOPAUTOMIZER] AdminBot handle message: " + nickName + " " + chatmessage );
       if (chatMessage.contains("/info")) {
+        System.out.println("[SKYTOPAUTOMIZER] Info command!" );
         sendMessage("/msg " + nickName + "[AB] AdminBot v.1!");
         sendMessage("/msg " + nickName + "[AB] Witaj w menu bota stworzonego przez @Norbiros");
         sendMessage("/msg " + nickName + "[AB] Obecne komendy:");
         sendMessage("/msg " + nickName + "[AB] /helper");
         sendMessage("/msg " + nickName + "[AB] /info");
-        return 1;
       } else if (chatMessage.contains("/helper")) {
+        System.out.println("[SKYTOPAUTOMIZER] Helper command!" );
         sendMessage("/msg " + nickName + "[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
         sendMessage("/msg " + nickName + "[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
         sendMessage("/msg " + nickName + "[AB] że mod ciągle spamował...");
@@ -36,8 +38,12 @@ public class AdminBot {
         sendMessage("/msg " + nickName + "[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
         sendMessage("/msg " + nickName + "[AB] Jeśli chcesz mu pomóc, daj mu podpis");
         sendMessage("/msg " + nickName + "[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
+      } else {
+        System.out.println("[SKYTOPAUTOMIZER] AutoReply doesnt work!" );
+        return 0;
       }
-      return 0;
+      System.out.println("[SKYTOPAUTOMIZER] AutoReply!" );
+      return 1;
   }
 
   public static void sendMessage(String message) {

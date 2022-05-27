@@ -34,11 +34,15 @@ public class ChatHandler {
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
 
     if (privateMessageMatcher.find()) {
+      System.out.println("[SKYTOPAUTOMIZER] Arg 1: " + privateMessageMatcher.group(1) );
+      System.out.println("[SKYTOPAUTOMIZER] Arg 2: " + privateMessageMatcher.group(2) );
+      System.out.println("[SKYTOPAUTOMIZER] Arg 3: " + privateMessageMatcher.group(3) );
       if (privateMessageMatcher.group(2) == "Ja") {
         if (AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
           event.setCanceled(true);
         }
       } else if (privateMessageMatcher.group(3).contains("[AB]")) {
+        System.out.println("[SKYTOPAUTOMIZER] Hide AutoReply message: " + event.getMessage().getString() );
         event.setCanceled(true);
       }
     } else if (matcher.find()) { 
