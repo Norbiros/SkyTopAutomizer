@@ -2,6 +2,7 @@ package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 import dev.norbiros.skytopautomizer.administration.AntyCaps;
 import dev.norbiros.skytopautomizer.administration.AdminBot;
+import dev.norbiros.skytopautomizer.administration.ChatComplete;
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -34,10 +35,11 @@ public class ChatHandler {
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
 
     if (privateMessageMatcher.find()) {
-      System.out.println("[SKYTOPAUTOMIZER] Message is sent to: " + privateMessageMatcher.group(2) );
       if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
         System.out.println("[SKYTOPAUTOMIZER] Trying to handle Admin bot message!" );
-        AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3));
+        if (AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
+          event.setCanceled(true);
+        }
       } else if (privateMessageMatcher.group(3).contains("[AB]")) {
         System.out.println("[SKYTOPAUTOMIZER] Hide AutoReply message: " + event.getMessage().getString() );
         event.setCanceled(true);
@@ -64,7 +66,9 @@ public class ChatHandler {
         Minecraft.getInstance().player.chat("/a " + userName + " kocha torwika <3!");
       }
 
-      AntyCaps.handleMessage(userName, chatMessage);
+      if (chatMessage.startsWith(".")) {
+        ChatComplete.handleMessage(userName, chatMessage.replace(".", ""));
+      }
     }
   }
 }

@@ -18,20 +18,21 @@ import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
-public class AdminBot {
+public class PrivateAdminBot {
   
   public static String commandExecutor;
   
-  public static void handleMessage(String nickName, String chatMessage) {
-    System.out.println("[SKYTOPAUTOMIZER] AdminBot handle message: " + nickName + " " + chatMessage);
+  public static int handleMessage(String nickName, String chatMessage) {
     commandExecutor = nickName;
     if (chatMessage.contains("/info")) {
       System.out.println("[SKYTOPAUTOMIZER] Info command!" );
       sendDirectMessage("[AB] AdminBot v.1!");
       sendDirectMessage("[AB] Witaj w menu bota stworzonego przez @Norbiros");
+      sendDirectMessage("[AB] Bot jest w trakcie programowania!");
+      sendDirectMessage("");
       sendDirectMessage("[AB] Obecne komendy:");
-      sendDirectMessage("[AB] /helper");
-      sendDirectMessage("[AB] /info");
+      sendDirectMessage("[AB] !helper - pomóż Norbirosowi");
+      sendDirectMessage("[AB] !info - lista komend");
     } else if (chatMessage.contains("/helper")) {
       System.out.println("[SKYTOPAUTOMIZER] Helper command!" );
       sendDirectMessage("[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
@@ -42,8 +43,10 @@ public class AdminBot {
       sendDirectMessage("[AB] Jeśli chcesz mu pomóc, daj mu podpis");
       sendDirectMessage("[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
     } else {
-      System.out.println("[SKYTOPAUTOMIZER] AutoReply doesnt work!" );
+      return 0;
     }
+    System.out.println("[SKYTOPAUTOMIZER] AutoReply worked!" );
+    return 1;
   }
 
   public static void sendMessage(String message) {
