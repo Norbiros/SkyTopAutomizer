@@ -22,29 +22,27 @@ public class AdminBot {
   
   public static String commandExecutor;
   
-  public static void handleMessage(String nickName, String chatMessage, ClientChatReceivedEvent event) {
+  public static void handleMessage(String nickName, String chatMessage) {
     System.out.println("[SKYTOPAUTOMIZER] AdminBot handle message: " + nickName + " " + chatMessage);
     commandExecutor = nickName;
     if (chatMessage.contains("/info")) {
       System.out.println("[SKYTOPAUTOMIZER] Info command!" );
-      sendMessage("/msg " + nickName + "[AB] AdminBot v.1!");
-      sendMessage("/msg " + nickName + "[AB] Witaj w menu bota stworzonego przez @Norbiros");
-      sendMessage("/msg " + nickName + "[AB] Obecne komendy:");
-      sendMessage("/msg " + nickName + "[AB] /helper");
-      sendMessage("/msg " + nickName + "[AB] /info");
-      event.setCanceled(true);
+      sendDirectMessage("[AB] AdminBot v.1!");
+      sendDirectMessage("[AB] Witaj w menu bota stworzonego przez @Norbiros");
+      sendDirectMessage("[AB] Obecne komendy:");
+      sendDirectMessage("[AB] /helper");
+      sendDirectMessage("[AB] /info");
     } else if (chatMessage.contains("/helper")) {
       System.out.println("[SKYTOPAUTOMIZER] Helper command!" );
-      sendMessage("/msg " + nickName + "[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
-      sendMessage("/msg " + nickName + "[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
-      sendMessage("/msg " + nickName + "[AB] że mod ciągle spamował...");
-      sendMessage("/msg " + nickName + "[AB] Z tego powodu @Norbiros został wyrzucony z Administracji...");
-      sendMessage("/msg " + nickName + "[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
-      sendMessage("/msg " + nickName + "[AB] Jeśli chcesz mu pomóc, daj mu podpis");
-      sendMessage("/msg " + nickName + "[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
+      sendDirectMessage("[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
+      sendDirectMessage("[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
+      sendDirectMessage("[AB] że mod ciągle spamował...");
+      sendDirectMessage("[AB] Z tego powodu @Norbiros został wyrzucony z Administracji...");
+      sendDirectMessage("[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
+      sendDirectMessage("[AB] Jeśli chcesz mu pomóc, daj mu podpis");
+      sendDirectMessage("[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
     } else {
       System.out.println("[SKYTOPAUTOMIZER] AutoReply doesnt work!" );
-      event.setCanceled(true);
     }
   }
 

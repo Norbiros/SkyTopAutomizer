@@ -34,11 +34,10 @@ public class ChatHandler {
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
 
     if (privateMessageMatcher.find()) {
-      System.out.println("[SKYTOPAUTOMIZER] Arg 1: " + privateMessageMatcher.group(1) );
-      System.out.println("[SKYTOPAUTOMIZER] Arg 2: " + privateMessageMatcher.group(2) );
-      System.out.println("[SKYTOPAUTOMIZER] Arg 3: " + privateMessageMatcher.group(3) );
-      if (privateMessageMatcher.group(2) == "Ja") {
-        AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3), event);
+      System.out.println("[SKYTOPAUTOMIZER] Message is sent to: " + privateMessageMatcher.group(2) );
+      if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
+        System.out.println("[SKYTOPAUTOMIZER] Trying to handle Admin bot message!" );
+        AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3));
       } else if (privateMessageMatcher.group(3).contains("[AB]")) {
         System.out.println("[SKYTOPAUTOMIZER] Hide AutoReply message: " + event.getMessage().getString() );
         event.setCanceled(true);
