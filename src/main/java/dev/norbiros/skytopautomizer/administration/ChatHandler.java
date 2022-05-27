@@ -55,7 +55,7 @@ public class ChatHandler {
       // Test chat message
       if (chatMessage.contains("lol")) {
         System.out.println("[SKYTOPAUTOMIZER] Test auto reply!");
-        Minecraft.getInstance().player.chat("/a " + player + " kocha torwika <3!");
+        Minecraft.getInstance().player.chat("/a " + userName + " kocha torwika <3!");
       }
 
       AntyCaps.handleMessage(userName, chatMessage);
