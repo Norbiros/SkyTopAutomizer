@@ -22,7 +22,7 @@ public class AdminBot {
   
   public static String commandExecutor;
   
-  public static int handleMessage(String nickName, String chatMessage) {
+  public static void handleMessage(String nickName, String chatMessage, ClientChatReceivedEvent event) {
     System.out.println("[SKYTOPAUTOMIZER] AdminBot handle message: " + nickName + " " + chatMessage);
     commandExecutor = nickName;
     if (chatMessage.contains("/info")) {
@@ -32,6 +32,7 @@ public class AdminBot {
       sendMessage("/msg " + nickName + "[AB] Obecne komendy:");
       sendMessage("/msg " + nickName + "[AB] /helper");
       sendMessage("/msg " + nickName + "[AB] /info");
+      event.setCanceled(true);
     } else if (chatMessage.contains("/helper")) {
       System.out.println("[SKYTOPAUTOMIZER] Helper command!" );
       sendMessage("/msg " + nickName + "[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
@@ -43,10 +44,8 @@ public class AdminBot {
       sendMessage("/msg " + nickName + "[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
     } else {
       System.out.println("[SKYTOPAUTOMIZER] AutoReply doesnt work!" );
-      return 0;
+      event.setCanceled(true);
     }
-    System.out.println("[SKYTOPAUTOMIZER] AutoReply!" );
-    return 1;
   }
 
   public static void sendMessage(String message) {

@@ -38,9 +38,7 @@ public class ChatHandler {
       System.out.println("[SKYTOPAUTOMIZER] Arg 2: " + privateMessageMatcher.group(2) );
       System.out.println("[SKYTOPAUTOMIZER] Arg 3: " + privateMessageMatcher.group(3) );
       if (privateMessageMatcher.group(2) == "Ja") {
-        if (AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3)) == 1) {
-          event.setCanceled(true);
-        }
+        AdminBot.handleMessage(privateMessageMatcher.group(1), privateMessageMatcher.group(3), event);
       } else if (privateMessageMatcher.group(3).contains("[AB]")) {
         System.out.println("[SKYTOPAUTOMIZER] Hide AutoReply message: " + event.getMessage().getString() );
         event.setCanceled(true);
