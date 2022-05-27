@@ -37,19 +37,19 @@ public class AntyCaps {
     boolean capsMessage = capsLetterAmount >= 4 && (((double)capsLetterAmount / (double)chatMessageLength) >= 0.5);
 
     if (capsMessage) {
-      if (!warnings.containsKey(player)) {
-        System.out.println("[SKYTOPAUTOMIZER] I'm adding warning for " + player);
-        warnings.put(player, 1);
+      if (!warnings.containsKey(nickName)) {
+        System.out.println("[SKYTOPAUTOMIZER] I'm adding warning for " + nickName);
+        warnings.put(nickName, 1);
       }
       
-      if (warnings.get(player) == 2) {
-        Minecraft.getInstance().player.chat("/mute " + player + "30min caps");
-        System.out.println("[SKYTOPAUTOMIZER] Mute player for caps: " + player);
-        warnings.put(player, 0);
+      if (warnings.get(nickName) == 2) {
+        Minecraft.getInstance().player.chat("/mute " + nickName + "30min caps");
+        System.out.println("[SKYTOPAUTOMIZER] Mute player for caps: " + nickName);
+        warnings.put(nickName, 0);
       } else {
-          Minecraft.getInstance().player.chat("Uważaj na caps " + player);
-          System.out.println("[SKYTOPAUTOMIZER] Warn for caps to player " + player);
-          warnings.put(player, warnings.get(player) + 1);
+          Minecraft.getInstance().player.chat("Uważaj na caps " + nickName);
+          System.out.println("[SKYTOPAUTOMIZER] Warn for caps to player " + nickName);
+          warnings.put(nickName, warnings.get(nickName) + 1);
       }
     }
   }
