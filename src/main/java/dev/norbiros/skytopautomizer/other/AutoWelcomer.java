@@ -17,16 +17,20 @@ import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import java.util.concurrent.TimeUnit;
 import java.util.Random;
 
 public class AutoWelcomer {
     
   public static void handleMessage(String nickName) {
     Random rand = new Random();
-    int time = rand.nextInt(3);
-    time = time + 1;
-    TimeUnit.SECONDS.sleep(time);
+    int time = rand.nextInt(250);
+    time = (time + 50) * 10;
+    try {
+      Thread.sleep(1000);
+    } catch(InterruptedException ex) {
+      System.out.println(ex);
+    }
+
     sendMessage("Hej " + nickName);
   }
 
