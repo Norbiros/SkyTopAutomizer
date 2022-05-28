@@ -24,7 +24,7 @@ public class PrivateAdminBot {
   
   public static int handleMessage(String nickName, String chatMessage) {
     commandExecutor = nickName;
-    if (chatMessage.contains("/info")) {
+    if (chatMessage.contains("!info")) {
       System.out.println("[SKYTOPAUTOMIZER] Info command!" );
       sendDirectMessage("[AB] AdminBot v.1!");
       sendDirectMessage("[AB] Witaj w menu bota stworzonego przez @Norbiros");
@@ -33,7 +33,7 @@ public class PrivateAdminBot {
       sendDirectMessage("[AB] Obecne komendy:");
       sendDirectMessage("[AB] !helper - pomóż Norbirosowi");
       sendDirectMessage("[AB] !info - lista komend");
-    } else if (chatMessage.contains("/helper")) {
+    } else if (chatMessage.contains("!helper")) {
       System.out.println("[SKYTOPAUTOMIZER] Helper command!" );
       sendDirectMessage("[AB] Norbiros stworzył AutoModa, który sam zgaszał caps na chat...");
       sendDirectMessage("[AB] Niestety pewne osoby, znalazły błąd, i spowodowały");
@@ -42,6 +42,9 @@ public class PrivateAdminBot {
       sendDirectMessage("[AB] Teraz próbuje zrobić wszystko, aby powrócić!");
       sendDirectMessage("[AB] Jeśli chcesz mu pomóc, daj mu podpis");
       sendDirectMessage("[AB] w '/dzialka odwiedz KrolestwoSzczytow'!");
+    } else if (chatMessage.contains("!chatcomplete")) {
+      sendDirectMessage("[AB] AutoChatComplete to funkcja AdminBot, która pomaga administracji w odpowiedziach na pytania graczy.");
+      sendDirectMessage("[AB] Możesz ją wywołać pisąc na chat .<nazwa> np. .start, .skrzynki, .autocomplete");
     } else {
       return 0;
     }

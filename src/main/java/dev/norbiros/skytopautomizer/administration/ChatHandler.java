@@ -1,8 +1,8 @@
 package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
-import dev.norbiros.skytopautomizer.administration.AntyCaps;
-import dev.norbiros.skytopautomizer.administration.PrivateAdminBot;
-import dev.norbiros.skytopautomizer.administration.ChatComplete;
+import dev.norbiros.skytopautomizer.administration.*;
+import dev.norbiros.skytopautomizer.other.*;
+
 
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -29,8 +29,10 @@ public class ChatHandler {
     final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?( )?(.*?):[ ]?(.*)");
     final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
     final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> (.*?): (.*)");
+    final Pattern welcomePattern = Pattern.compile("Przywitaj nowego gracza (.*)");
     Matcher matcher = pattern.matcher( event.getMessage().getString() );
     Matcher privateMessageMatcher = privateMessagePattern.matcher( event.getMessage().getString() );
+    Matcher welcomeMatcher = welcomePattern.matcher( event.getMessage().getString() );
     
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
 
@@ -44,6 +46,8 @@ public class ChatHandler {
         System.out.println("[SKYTOPAUTOMIZER] Hide AutoReply message: " + event.getMessage().getString() );
         event.setCanceled(true);
       }
+    } else if (welcomeMatcher.find()) {
+      AutoWelcomer.handleMessage(welcomeMatcher.group(1));
     } else if (matcher.find()) { 
       String rank = matcher.group(2);
       String userName = matcher.group(4).replace(" ", "");
@@ -67,6 +71,7 @@ public class ChatHandler {
       }
 
       AntyCaps.handleMessage(userName, chatMessage);
+      AutoWelcomer.
       
       if (chatMessage.startsWith(".")) {
         if (rank.equals("HELPER") || rank.equals("MOD") || userName.equals("Norbiros")) {
