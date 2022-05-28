@@ -1,4 +1,4 @@
-package dev.norbiros.skytopautomizer.administration;
+package dev.norbiros.skytopautomizer.other;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 
 
