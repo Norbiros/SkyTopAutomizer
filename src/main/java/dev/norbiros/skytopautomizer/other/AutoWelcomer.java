@@ -23,8 +23,8 @@ public class AutoWelcomer {
     
   public static void handleMessage(String nickName) {
     Random rand = new Random();
-    int time = rand.nextInt(250);
-    time = (time + 150) * 10;
+    int time = rand.nextInt(300);
+    time = (time + 300) * 10;
     try {
       Thread.sleep(time);
     } catch(InterruptedException ex) {
