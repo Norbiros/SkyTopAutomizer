@@ -26,9 +26,9 @@ public class AutoWelcomer {
     int time = rand.nextInt(250);
     time = (time + 50) * 10;
     try {
-      Thread.sleep(1000);
+      Thread.sleep(time);
     } catch(InterruptedException ex) {
-      System.out.println(ex);
+      System.out.println("[SKYTOPAUTOMIZER] Unexpected error: " + ex);
     }
 
     sendMessage("Hej " + nickName);
