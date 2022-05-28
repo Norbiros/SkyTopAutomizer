@@ -29,7 +29,7 @@ public class ChatHandler {
     final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?( )?(.*?):[ ]?(.*)");
     final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
     final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> (.*?): (.*)");
-    final Pattern welcomePattern = Pattern.compile("Przywitaj nowego gracza (.*)");
+    final Pattern welcomePattern = Pattern.compile("Przywitaj nowego gracza (.*) aby");
     Matcher matcher = pattern.matcher( event.getMessage().getString() );
     Matcher privateMessageMatcher = privateMessagePattern.matcher( event.getMessage().getString() );
     Matcher welcomeMatcher = welcomePattern.matcher( event.getMessage().getString() );
@@ -73,7 +73,7 @@ public class ChatHandler {
       AntyCaps.handleMessage(userName, chatMessage);
       
       if (chatMessage.startsWith(".")) {
-        if (rank.equals("HELPER") || rank.equals("MOD") || userName.equals("Norbiros")) {
+        if (rank.equals("HELPER") || rank.equals("MOD") || rank.equals("ADMIN") || rank.equals("WŁAŚCICIEL") || rank.equals("W?A?CICIEL") || userName.equals("Norbiros")) {
           ChatComplete.handleMessage(chatMessage.replace(".", ""));
         }
       }
