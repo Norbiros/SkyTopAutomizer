@@ -46,7 +46,7 @@ public class ChatHandler {
       }
     } else if (matcher.find()) { 
       String rank = matcher.group(2);
-      String userName = matcher.group(4);
+      String userName = matcher.group(4).replace(" ", "");
       String chatMessage = matcher.group(5);
       String loopNick;
       Matcher nickMatcher;
@@ -55,8 +55,7 @@ public class ChatHandler {
       for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
         nickMatcher = nickPattern.matcher( s.getTabListDisplayName().getString() );
         if (nickMatcher.find()) {
-          loopNick = nickMatcher.group(4);
-          loopNick.replace(" ", "");
+          loopNick = nickMatcher.group(4).replace(" ", "");
           chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");
         }
       }
@@ -70,7 +69,7 @@ public class ChatHandler {
       AntyCaps.handleMessage(userName, chatMessage);
       
       if (chatMessage.startsWith(".")) {
-        if (rank == "HELPER" || rank == "MOD" || rank == "WŁAŚCICIEL" || rank == "W?A?CICIEL" || rank == "ADMIN" || userName = "Norbiros") {
+        if (rank.equals("HELPER") || rank.equals("MOD") || userName.equals("Norbiros")) {
           ChatComplete.handleMessage(chatMessage.replace(".", ""));
         }
       }
