@@ -71,7 +71,6 @@ public class ChatHandler {
       }
 
       AntyCaps.handleMessage(userName, chatMessage);
-      AutoWelcomer.
       
       if (chatMessage.startsWith(".")) {
         if (rank.equals("HELPER") || rank.equals("MOD") || userName.equals("Norbiros")) {

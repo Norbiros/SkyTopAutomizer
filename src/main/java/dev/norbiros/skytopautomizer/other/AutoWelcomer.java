@@ -23,7 +23,7 @@ import java.util.Random;
 public class AutoWelcomer {
     
   public static void handleMessage(String nickName) {
-    Random rand = new Random()
+    Random rand = new Random();
     TimeUnit.SECONDS.sleep(rand.nextInt(3) + 1);
     sendMessage("Hej " + nickName);
   }
