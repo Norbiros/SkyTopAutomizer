@@ -24,7 +24,9 @@ public class AutoWelcomer {
     
   public static void handleMessage(String nickName) {
     Random rand = new Random();
-    TimeUnit.SECONDS.sleep(rand.nextInt(3) + 1);
+    int time = rand.nextInt(3);
+    time = time + 1;
+    TimeUnit.SECONDS.sleep(time);
     sendMessage("Hej " + nickName);
   }
 
