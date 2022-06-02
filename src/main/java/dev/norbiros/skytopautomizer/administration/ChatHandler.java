@@ -57,7 +57,8 @@ public class ChatHandler {
 
       // Replace all nicknames with "<nick>"
       for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
-        nickMatcher = nickPattern.matcher( s.getTabListDisplayName().getString() );
+        if (s.getTabListDisplayName() != null)
+          nickMatcher = nickPattern.matcher( s.getTabListDisplayName().getString() );
         if (nickMatcher.find()) {
           loopNick = nickMatcher.group(4).replace(" ", "");
           chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");

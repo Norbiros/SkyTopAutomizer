@@ -24,14 +24,28 @@ public class AutoWelcomer {
   public static void handleMessage(String nickName) {
     Random rand = new Random();
     int time = rand.nextInt(300);
-    time = (time + 300) * 10;
+    time = (time + 400) * 10;
     try {
       Thread.sleep(time);
     } catch(InterruptedException ex) {
       System.out.println("[SKYTOPAUTOMIZER] Unexpected error: " + ex);
     }
-
-    sendMessage("Hej " + nickName);
+    if (rand.nextInt(2) == 0) {
+      switch (rand.nextInt(4)) {
+        case 0:
+          sendMessage("Hej " + nickName);
+          break;
+        case 1:
+          sendMessage("Czesc " + nickName);
+          break;
+        case 2:
+          sendMessage("witaj " + nickName);
+          break;
+        default:
+          sendMessage("hej " + nickName);
+          break;
+      }
+    }
   }
 
   public static void sendMessage(String message) {
