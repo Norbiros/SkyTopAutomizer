@@ -26,7 +26,7 @@ public class ChatHandler {
   @SubscribeEvent
   public static void onClientChat(ClientChatReceivedEvent event) {
 
-    final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?( )?(.*?):[ ]?(.*)");
+    final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?(Gracz)?( )?(.*?):[ ]?(.*)");
     final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
     final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> (.*?): (.*)");
     final Pattern welcomePattern = Pattern.compile("Przywitaj nowego gracza (.*) aby");
@@ -35,6 +35,10 @@ public class ChatHandler {
     Matcher welcomeMatcher = welcomePattern.matcher( event.getMessage().getString() );
     
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
+    System.out.println("[SKYTOPAUTOMIZER] Player plays on SkyTop: " + userIsOnServer);
+    if (!userIsOnServer) {
+      System.out.println("[SKYTOPAUTOMIZER] Player plays on: " + Minecraft.getInstance().getCurrentServer().ip);
+    }
 
     if (privateMessageMatcher.find()) {
       if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
@@ -50,8 +54,8 @@ public class ChatHandler {
       AutoWelcomer.handleMessage(welcomeMatcher.group(1));
     } else if (matcher.find()) { 
       String rank = matcher.group(2);
-      String userName = matcher.group(4).replace(" ", "");
-      String chatMessage = matcher.group(5);
+      String userName = matcher.group(5).replace(" ", "");
+      String chatMessage = matcher.group(6);
       String loopNick;
       Matcher nickMatcher;
 

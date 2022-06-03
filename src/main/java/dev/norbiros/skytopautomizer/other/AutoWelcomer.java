@@ -7,8 +7,8 @@ public class AutoWelcomer {
     
   public static void handleMessage(String nickName) {
     Random rand = new Random();
-    int time = rand.nextInt(300);
-    time = (time + 400) * 10;
+    int time = rand.nextInt(200);
+    time = (time + 500) * 10;
     try {
       Thread.sleep(time);
     } catch(InterruptedException ex) {
@@ -18,8 +18,8 @@ public class AutoWelcomer {
       switch (rand.nextInt(4)) {
         case 0 -> sendMessage("Hej " + nickName);
         case 1 -> sendMessage("Czesc " + nickName);
-        case 2 -> sendMessage("kaka sraka małego ptaka " + nickName);
-        default -> sendMessage("uwu " + nickName);
+        case 2 -> sendMessage("Witaj " + nickName);
+        default -> sendMessage("hi " + nickName);
       }
     }
   }
