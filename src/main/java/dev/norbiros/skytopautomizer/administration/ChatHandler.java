@@ -63,10 +63,10 @@ public class ChatHandler {
       for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
         if (s.getTabListDisplayName() != null && s.getTabListDisplayName().getString() != null) {
           nickMatcher = nickPattern.matcher(s.getProfile().getName());
-          System.out.println("[SKYTOPAUTOMIZER] Test Nickname: " + s.getProfile().getName())
+          System.out.println("[SKYTOPAUTOMIZER] Test Nickname: " + s.getProfile().getName());
           if (nickMatcher.find()) {
             loopNick = nickMatcher.group(4).replace(" ", "");
-            System.out.println("[SKYTOPAUTOMIZER] Loop Nickname: " + nickMatcher.group(4).replace(" ", ""))
+            System.out.println("[SKYTOPAUTOMIZER] Loop Nickname: " + nickMatcher.group(4).replace(" ", ""));
             chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");
           }
         }
