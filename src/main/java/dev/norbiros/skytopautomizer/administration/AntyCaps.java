@@ -1,29 +1,16 @@
 package dev.norbiros.skytopautomizer.administration;
-import dev.norbiros.skytopautomizer.SkytopAutomizer;
 
-
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.multiplayer.ServerData;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.client.multiplayer.PlayerInfo;
 
 public class AntyCaps {
   
   public static Map<String, Integer> warnings = new HashMap<String, Integer>();
   
-  public static void handleMessage(String nickName, String chatMessage) {
-    
+  public static int handleMessage(String nickName, String chatMessage) {
+
+    int playerWarnings = 0;
     // Calculate caps letter amount
     int chatMessageLength = chatMessage.replace(" ", "").length();
 	  int capsLetterAmount = 0;
@@ -36,21 +23,7 @@ public class AntyCaps {
 
     boolean capsMessage = capsLetterAmount >= 4 && (((double)capsLetterAmount / (double)chatMessageLength) >= 0.5);
 
-    if (capsMessage) {
-      if (!warnings.containsKey(nickName)) {
-        System.out.println("[SKYTOPAUTOMIZER] I'm adding warning for " + nickName);
-        warnings.put(nickName, 1);
-      }
-      
-      if (warnings.get(nickName) == 2) {
-        Minecraft.getInstance().player.chat("/mute " + nickName + "30min caps");
-        System.out.println("[SKYTOPAUTOMIZER] Mute player for caps: " + nickName);
-        warnings.put(nickName, 0);
-      } else {
-          Minecraft.getInstance().player.chat("Uważaj na caps " + nickName);
-          System.out.println("[SKYTOPAUTOMIZER] Warn for caps to player " + nickName);
-          warnings.put(nickName, warnings.get(nickName) + 1);
-      }
-    }
+    if (capsMessage) return 1;
+    return 0;
   }
 } 
