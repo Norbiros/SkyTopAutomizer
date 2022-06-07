@@ -43,6 +43,6 @@ public class AdminDetectorHandler {
 
         System.out.println("Nick: " + nickName);
         System.out.println("Warnings: " + warnings.get(nickName).keySet().stream().findFirst().isEmpty());
-        System.out.println("Data: " + warnings.get(nickName).keySet().stream().skip(valueList.stream().count() - 1).findFirst().isEmpty());
+        System.out.println("Data: " + warnings.get(nickName).keySet().stream().skip(warnings.get(nickName).keySet().stream().count() - 1).findFirst().isEmpty());
     }
 }
