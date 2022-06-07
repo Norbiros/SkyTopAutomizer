@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AntyCaps {
-  
-  public static Map<String, Integer> warnings = new HashMap<String, Integer>();
-  
-  public static int handleMessage(String nickName, String chatMessage) {
+    
+  public static int handleMessage(String chatMessage) {
 
     int playerWarnings = 0;
     // Calculate caps letter amount
