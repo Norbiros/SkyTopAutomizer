@@ -25,7 +25,7 @@ public class AdminDetectorHandler {
         int warn = AntyCaps.handleMessage(nickName); 
         System.out.println("HANDLED CAPS " + warn);
 
-        if (!warnings.contains(nickName)) {
+        if (!warnings.containsKey(nickName)) {
             warningData.put(1, "caps");
             warnings.put(nickName, warningData);
             System.out.println("New warning for caps");
