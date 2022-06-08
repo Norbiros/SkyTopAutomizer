@@ -29,11 +29,8 @@ public class ChatHandler {
     Matcher privateMessageMatcher = privateMessagePattern.matcher( event.getMessage().getString() );
     Matcher welcomeMatcher = welcomePattern.matcher( event.getMessage().getString() );
     
-    boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip == "skytop.pl";
+    boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip.equalsIgnoreCase("skytop.pl");
     System.out.println("[SKYTOPAUTOMIZER] Player plays on SkyTop: " + userIsOnServer);
-    if (!userIsOnServer) {
-      System.out.println("[SKYTOPAUTOMIZER] Player plays on: " + Minecraft.getInstance().getCurrentServer().ip);
-    }
 
     if (privateMessageMatcher.find()) {
       if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
@@ -55,15 +52,15 @@ public class ChatHandler {
 
       // Replace all nicknames with "<nick>"
       for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
-        if (s.getTabListDisplayName() != null) {
-          nickMatcher = nickPattern.matcher(s.getProfile().getName());
-          System.out.println("[SKYTOPAUTOMIZER] Test Nickname: " + s.getProfile().getName());
-          if (nickMatcher.find()) {
-            loopNick = nickMatcher.group(4).replace(" ", "");
-            System.out.println("[SKYTOPAUTOMIZER] Loop Nickname: " + nickMatcher.group(4).replace(" ", ""));
-            chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");
-          }
+        nickMatcher = nickPattern.matcher(s.getProfile().getName());
+        System.out.println("[SKYTOPAUTOMIZER] Test Nickname: " + s.getProfile().getName());
+        /*
+        if (nickMatcher.find()) {
+          loopNick = nickMatcher.group(4).replace(" ", "");
+          System.out.println("[SKYTOPAUTOMIZER] Loop Nickname: " + nickMatcher.group(4).replace(" ", ""));
+          chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");
         }
+        */
       }
 
       // Test chat message

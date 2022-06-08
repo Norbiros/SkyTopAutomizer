@@ -19,9 +19,11 @@ public class AdminDetectorHandler {
         }
 
 
+        System.out.println("LOADING ADMINHADNLER!")
         HashMap<Integer, String> warningData = new HashMap<Integer, String>();
 
         int warn = AntyCaps.handleMessage(nickName); 
+        System.out.println("HANDLED CAPS " + warn)
 
         if (warnings.get(nickName).keySet().stream().findFirst().isEmpty()) {
             warningData.put(1, "caps");
