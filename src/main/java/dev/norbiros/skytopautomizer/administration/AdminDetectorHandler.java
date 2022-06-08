@@ -25,6 +25,7 @@ public class AdminDetectorHandler {
         int warn = AntyCaps.handleMessage(nickName); 
         System.out.println("HANDLED CAPS " + warn);
 
+        if (warn == 0) { return; }
         if (!warnings.containsKey(nickName)) {
             warningData.put(1, "caps");
             warnings.put(nickName, warningData);
@@ -44,7 +45,7 @@ public class AdminDetectorHandler {
         warnings.put(nickName, warningData);
 
         System.out.println("Nick: " + nickName);
-        System.out.println("Warnings: " + warnings.get(nickName).keySet().stream().findFirst().isEmpty());
-        System.out.println("Data: " + warnings.get(nickName).keySet().stream().skip(warnings.get(nickName).keySet().stream().count() - 1).findFirst().isEmpty());
+        System.out.println("Warnings: " + warnings.get(nickName).keySet().stream().findFirst().get());
+        System.out.println("Data: " + warnings.get(nickName).keySet().stream().skip(warnings.get(nickName).keySet().stream().count() - 1).findFirst().get());
     }
 }

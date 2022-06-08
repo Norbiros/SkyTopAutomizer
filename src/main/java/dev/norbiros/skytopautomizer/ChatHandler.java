@@ -21,8 +21,7 @@ public class ChatHandler {
   @SubscribeEvent
   public static void onClientChat(ClientChatReceivedEvent event) {
 
-    final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?(Gracz)?( )?(.*?):[ ]?(.*)");
-    final Pattern nickPattern = Pattern.compile("(\\[(.*?)\\])?( )?([^ ]*)[ ]?[♀♂? ]?[ AFK]?");
+    final Pattern pattern = Pattern.compile("[♀♂? ]?[ ]?(\\[(.*?)\\])?(Gracz)?( )?(.*?)[: ][ ]?(.*)");
     final Pattern privateMessagePattern = Pattern.compile("PW (.*?) -> (.*?): (.*)");
     final Pattern welcomePattern = Pattern.compile("Przywitaj nowego gracza (.*) aby");
     Matcher matcher = pattern.matcher( event.getMessage().getString() );
@@ -31,6 +30,14 @@ public class ChatHandler {
     
     boolean userIsOnServer = Minecraft.getInstance().getCurrentServer().ip.equalsIgnoreCase("skytop.pl");
     System.out.println("[SKYTOPAUTOMIZER] Player plays on SkyTop: " + userIsOnServer);
+
+    System.out.println("1");
+
+    if ( Minecraft.getInstance().getCurrentServer().ip.equalsIgnoreCase("skytop.pl") ) {
+      return;
+    }
+
+    System.out.println("2");
 
     if (privateMessageMatcher.find()) {
       if (privateMessageMatcher.group(2).equalsIgnoreCase("Ja")) {
@@ -47,20 +54,13 @@ public class ChatHandler {
       String rank = matcher.group(2);
       String userName = matcher.group(5).replace(" ", "");
       String chatMessage = matcher.group(6);
-      String loopNick;
-      Matcher nickMatcher;
+
+      if (chatMessage.startsWith(" ")) { return; }
 
       // Replace all nicknames with "<nick>"
       for (PlayerInfo s : Minecraft.getInstance().getConnection().getOnlinePlayers()) {
-        nickMatcher = nickPattern.matcher(s.getProfile().getName());
-        System.out.println("[SKYTOPAUTOMIZER] Test Nickname: " + s.getProfile().getName());
-        /*
-        if (nickMatcher.find()) {
-          loopNick = nickMatcher.group(4).replace(" ", "");
-          System.out.println("[SKYTOPAUTOMIZER] Loop Nickname: " + nickMatcher.group(4).replace(" ", ""));
-          chatMessage = chatMessage.replaceAll("(?i)" + loopNick, "<nick>");
-        }
-        */
+        if (s.getProfile().getName() == " " ) { break; }
+        chatMessage = chatMessage.replaceAll("(?i)" + s.getProfile().getName(), "<nick>");
       }
 
       // Test chat message
