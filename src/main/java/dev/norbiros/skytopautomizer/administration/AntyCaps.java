@@ -2,7 +2,7 @@ package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 
 
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.client.event.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -22,7 +22,7 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 public class AntyCaps {
     
   @SubscribeEvent
-  public static void onClientChat(ClientChatReceivedEvent event) {
+  public void pickupItem(EntityItemPickupEvent event) {
     System.out.println("s");
     String s = Minecraft.getInstance().level.getScoreboard().getDisplaySlotName(0);
     System.out.println(s);
