@@ -22,7 +22,7 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 public class AntyCaps {
     
   @SubscribeEvent
-  public void onClientChat(ClientChatReceivedEvent event) {
+  public static void onClientChat(ClientChatReceivedEvent event) {
     System.out.println("s");
     System.out.println(Minecraft.getInstance().level.getScoreboard().toString());
     System.out.println(Minecraft.getInstance().level.getScoreboard().getDisplayObjective(1).toString());
