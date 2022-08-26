@@ -2,7 +2,7 @@ package dev.norbiros.skytopautomizer.administration;
 import dev.norbiros.skytopautomizer.SkytopAutomizer;
 
 
-import net.minecraftforge.client.event.EntityItemPickupEvent;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
