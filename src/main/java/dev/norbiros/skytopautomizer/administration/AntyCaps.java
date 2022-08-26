@@ -24,10 +24,12 @@ public class AntyCaps {
   @SubscribeEvent
   public void pickupItem(EntityItemPickupEvent event) {
     System.out.println("s");
-    String s = Minecraft.getInstance().level.getScoreboard().getDisplaySlotName(0);
-    System.out.println(s);
-    System.out.println(Minecraft.getInstance().level.toString());
+    System.out.println(Minecraft.getInstance().level.getScoreboard().toString());
+    System.out.println(Minecraft.getInstance().level.getScoreboard().getDisplayObjective(1).toString());
+    System.out.println(Minecraft.getInstance().level.getScoreboard().getDisplaySlotName(1));
     System.out.println(Minecraft.getInstance().level.getScoreboard().getDisplaySlotNames());
     System.out.println(Minecraft.getInstance().level.getScoreboard().getObjectiveNames());
+    System.out.println(Minecraft.getInstance().level.getScoreboard().getObjectives().toString());
+    System.out.println(Minecraft.getInstance().level.getScoreboard().getPlayerScores("Norbiros").toString());
   }
 } 
